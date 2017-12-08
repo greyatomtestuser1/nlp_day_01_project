@@ -1,7 +1,7 @@
 import unittest
 from inspect import getargspec
 
-from build import q05_classifier
+from ..build import q05_classifier
 
 import dill
 
@@ -11,14 +11,14 @@ from numpy.testing import assert_array_equal
 class Testing(unittest.TestCase):
     def setUp(self):
         print('setup')
-        with open('q05_classifier/test/user_sol.pkl', 'wb') as f:
+        with open('user_sol.pkl', 'wb') as f:
             dill.dump(q05_classifier, f)
-        with open('q05_classifier/test/test_sol.pkl', 'wb') as f:
+        with open('test_sol.pkl', 'wb') as f:
             dill.dump(q05_classifier, f)
 
-        with open('q05_classifier/test/user_sol.pkl', 'rb') as f:
+        with open('user_sol.pkl', 'rb') as f:
             self.student_func = dill.load(f)
-        with open('q05_classifier/test/test_sol.pkl', 'rb') as f:
+        with open('test_sol.pkl', 'rb') as f:
             self.solution_func = dill.load(f)
         self.data = 'data/20news-bydate-train/'
         self.student_return = self.student_func(self.data)
